@@ -7,7 +7,7 @@ from django.conf.global_settings import AUTH_USER_MODEL
 
 # a user model
 
-# TODO extend the django user model
+# TODO #2 extend the django user model
 
 # a group model
 class Group(models.Model):
@@ -26,7 +26,7 @@ class Message(models.Model):
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
     text = models.TextField(max_length=256, 
                             validators=[MinLengthValidator(2)])
-    # TODO add images to message
+    # TODO #1 add images to message
     
     def __str__(self):
         return f'{self.text}'
