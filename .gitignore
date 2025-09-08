@@ -1,0 +1,9 @@
+__*__
+__*__.*
+*.pyc
+migrations
+*.sqlite3
+*.cfg
+*.ps1
+*.fish
+
