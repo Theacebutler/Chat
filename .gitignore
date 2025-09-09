@@ -7,3 +7,4 @@ migrations
 *.ps1
 *.fish
 
+log.txt
