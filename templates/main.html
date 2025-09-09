@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block body %}
+<small>main.html: Shows the "post" and all messages</small>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Post">
+</form>
+<ul id="msgs">
+
+</ul>
+<script type="text/javascript">
+    console.log(1)
+    async function get_messages() {
+        console.log('getting the json...')
+        fetch("{{ url }}", { cache: "no-store" })
+            .then((res) => res.json())
+            .then((rows) => {
+
+                console.log('json data: ', rows[0].fields)
+
+
+            })
+
+    }
+
+
+    setTimeout('get_messages()', 1000);
+</script>
+
+
+{% endblock body %}

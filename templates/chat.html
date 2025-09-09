@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block body %}
+  <!-- this page displays the chat with a nother user
+  by makeing a get requset to the api and retriveing all
+  the chats with the groups user's -->
+  <div id="msgs">
+
+  </div>
+<script>
+  async function get_msgs() {
+    console.log('getting messages from server')
+    fetch("{% url 'messages_all' %}", {cache: "no-cache"})
+    .then((res) => res.json())
+    .then((rows) => {
+      document.getElementById('msgs').innerHTML = "";
+      for (let i = 0; i < rows.langth; i++) {
+        line = rows[i]
+        let new_div = document.createElement('div')
+        let new_p = document.createElement('p')
+        new_p.innerHTML = line[0]
+        new_div.appendChild(new_p)
+      }
+    })
+  }
+</script>
+{% endblock body %}

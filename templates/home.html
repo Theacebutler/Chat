@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>Index</h1>
+<button onclick="get_groups('{{ get_messages }}')">Test</button>
+<!-- this page will mae the requset to the api to get 
+  all the user's groups and display tham -->
+<div id="gruops">
+  <!-- a new group will be added here -->
+</div>
+
+
+<script>
+function get_groups(url) {
+  fetch(url, {cache:"no-cache"})
+  .then((res) => res.json())
+  .then((group) => {
+    console.log('Data: ')
+  })
+}
+
+</script>
+
+{% endblock body %}
