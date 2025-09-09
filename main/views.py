@@ -57,7 +57,7 @@ class GetMessages(View):
         
         return JsonResponse(res, safe=False)
     
-
+# TODO pass the username to the json 
 
 
 def get_groups(request):

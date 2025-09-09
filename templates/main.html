@@ -16,8 +16,15 @@
         fetch("{{ url }}", { cache: "no-store" })
             .then((res) => res.json())
             .then((rows) => {
-
                 console.log('json data: ', rows[0].fields)
+                for (let i = 0; i < rows.length; i++){
+                    console.log(rows[i].fields.text)
+                    let line = document.createElement('li')
+                    let text = document.createElement('p')
+                    text.innerHTML = rows[i].fields.text
+                    line.appendChild(text)
+                    document.getElementById('msgs').appendChild(line)
+                }
 
 
             })
