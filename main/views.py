@@ -50,18 +50,27 @@ class MainPageView(View):
 
 class GetMessages(View):
     def get(self, requset):
-        msgs = m.Message.objects.all()
-        res = serializers.serialize('json', msgs)
+        all_msgs = []
+        msgs = m.Message.objects.all().order_by('-date_created')
+        for msg in msgs:
+            x = {
+                'text': msg.text,
+                'writer': msg.writer.username,
+            }
+            all_msgs.append(x)
+        x = {'messages': all_msgs}
+        # res = serializers.serialize('json', msgs)
+        res = json.dumps(x)
         
         return HttpResponse(res, content_type = 'application.json')
         
-        return JsonResponse(res, safe=False)
-    
-# TODO pass the username to the json 
 
 
-def get_groups(request):
-    data = {1: 'this is a mesage', 2: '3 min ago'}
-    return JsonResponse(data=data)
-
+# TODO #4 creae the groups endpoint
+class GetGroups(View):
+    def get(self, requset):
+        all_groups = []
+        gs = m.Group.objects.all()
+        for groups in gs:
+            ...
 # class GetChats

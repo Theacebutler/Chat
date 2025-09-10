@@ -1,16 +1,25 @@
-async function get_group() {
-    fetch("{% url 'groups_all' %", {cache: "no-store"})
-    .then((res) => res.json())
-    .then((rows) => {
-        for (let i = 0; i < rows.langth; i++) {
-            line = rows[i]
-            document.getElementById('groups').innerHTML +=
-            "<p>"+line[0] + "<br/>;" + line[1] + "</p>\n";
-        }
-        setTimeout('get_group()', 4000);
-    })
-    .catch((error) => {
-        alert(error);
-    });
-}
+    async function get_messages() {
+        console.log('get_messages is called')
+        fetch("chats/all", { cache: "no-store" })
+            .then((res) => res.json())
+            .then((rows) => {
+                document.getElementById('msgs').innerHTML = ""
+                for (let i = 0; i < rows.messages.length; i++) {
+                    let line = document.createElement('li')
+                    let message = document.createElement('div')
+                    let text = document.createElement('p')
+                    text.innerText = rows.messages[i].writer + ':\n' + rows.messages[i].text
+                    
+                    message.appendChild(text)
+                    document.getElementById('msgs').appendChild(message)
+                }
+                setTimeout('get_messages()', 1000*10);
+            })
+            .catch((error) => {
+                alert(error)
+            });
+    }
 
+    document.addEventListener('DOMContentLoaded', function () {
+        get_messages()
+    })

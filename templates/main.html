@@ -1,6 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
 {% block body %}
-<small>main.html: Shows the "post" and all messages</small>
 <form action="" method="post">
     {% csrf_token %}
     {{ form }}
@@ -9,31 +9,6 @@
 <ul id="msgs">
 
 </ul>
-<script type="text/javascript">
-    console.log(1)
-    async function get_messages() {
-        console.log('getting the json...')
-        fetch("{{ url }}", { cache: "no-store" })
-            .then((res) => res.json())
-            .then((rows) => {
-                console.log('json data: ', rows[0].fields)
-                for (let i = 0; i < rows.length; i++){
-                    console.log(rows[i].fields.text)
-                    let line = document.createElement('li')
-                    let text = document.createElement('p')
-                    text.innerHTML = rows[i].fields.text
-                    line.appendChild(text)
-                    document.getElementById('msgs').appendChild(line)
-                }
-
-
-            })
-
-    }
-
-
-    setTimeout('get_messages()', 1000);
-</script>
-
+<script src="{% static 'js/chat.js' %}"></script>
 
 {% endblock body %}

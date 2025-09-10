@@ -27,6 +27,6 @@ class Message(models.Model):
     text = models.TextField(max_length=256, 
                             validators=[MinLengthValidator(2)])
     # TODO #1 add images to message
-    
+    date_created = models.DateTimeField(auto_now=True)
     def __str__(self):
         return f'{self.text}'
